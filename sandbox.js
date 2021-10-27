@@ -2,7 +2,7 @@
 
 const list = document.querySelector('ul');
 const form = document.querySelector('form');
-// const button = document.querySelector('button');
+const button = document.querySelector('button');
 
 //add recipe func
 const addRecipe = (recipe,id) => {
@@ -32,13 +32,13 @@ const deleteRecipe = (id) =>{
 }
 
 //getting data
-db.collection('recipes').onSnapshot(snapshot =>{
+const unsub = db.collection('recipes').onSnapshot(snapshot =>{
     // console.log(snapshot.docChanges()); //snapshot has several methods we can use 
     snapshot.docChanges().forEach(change =>{
         const doc = change.doc;
         if(change.type === "added"){
             addRecipe(doc.data(),doc.id);
-        }else if(change.type === "removed"){
+        }else if(change.type === "removed"){ 
             deleteRecipe(doc.id)
         }
     })
@@ -58,7 +58,7 @@ form.addEventListener('submit', e =>{
         console.log('recipe added')
     })
     .catch(err =>{
-        console.log(err);
+        console.log(err); 
     })
 });
 
@@ -74,8 +74,8 @@ list.addEventListener('click', e => {
 });
 
 
-
-/* button.setEventListener('click', () =>{
-    unsub()
+//unsubscribe from changes
+button.addEventListener('click', () =>{
+    unsub();
+    console.log('unsubscribed from realtime events')
 })
- */
