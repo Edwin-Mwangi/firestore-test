@@ -1,3 +1,5 @@
+//the 1st doc whe re git has been used deliberately to store several version of the file
+
 const list = document.querySelector('ul');
 const form = document.querySelector('form');
 // const button = document.querySelector('button');
@@ -18,15 +20,29 @@ const addRecipe = (recipe,id) => {
     list.innerHTML += html; 
 
 } 
+
+//deleteRecipe func
+const deleteRecipe = (id) =>{
+    const recipes = document.querySelectorAll('li');
+    recipes.forEach(recipe =>{
+        if(recipe.getAttribute('data-id') === id){
+            recipe.remove();
+        }
+    }) 
+}
+
 //getting data
-db.collection('recipes').get()
-.then(snapshot => {
-    snapshot.docs.forEach(doc =>{
-        // console.log(doc.data())
-        addRecipe(doc.data(), doc.id);
+db.collection('recipes').onSnapshot(snapshot =>{
+    // console.log(snapshot.docChanges()); //snapshot has several methods we can use 
+    snapshot.docChanges().forEach(change =>{
+        const doc = change.doc;
+        if(change.type === "added"){
+            addRecipe(doc.data(),doc.id);
+        }else if(change.type === "removed"){
+            deleteRecipe(doc.id)
+        }
     })
-})
-.catch(err => console.log(err));  
+}); 
 
 //saving data in firebase
 form.addEventListener('submit', e =>{
