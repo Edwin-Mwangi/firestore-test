@@ -7,14 +7,14 @@
     <title>Document</title>
 </head>
 <body>
-    <style>
+    <style> 
         body{
             font-family: 'Segoe UI';
         }
     </style>
     <div class = 'container my-5'>
         <h2>Recipes</h2>
-        <ul>
+        <ul> 
             <li>Mushroom</li>
         </ul>
         <form>
@@ -32,30 +32,21 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-      
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        var firebaseConfig = {
-          apiKey: "AIzaSyDbbg15ctGRm9jOnFx1iuIbyoZSWNms5mk", 
+    <script>
+        const config = {
+          apiKey: "AIzaSyDbbg15ctGRm9jOnFx1iuIbyoZSWNms5mk",
           authDomain: "modern-js-16fab.firebaseapp.com",
           projectId: "modern-js-16fab",
           storageBucket: "modern-js-16fab.appspot.com",
           messagingSenderId: "497017105660",
-          appId: "1:497017105660:web:5ffd7df6992469284d7b79",
-          measurementId: "G-R7XX1JNKZK"
+          appId: "1:497017105660:web:f7398a9b8370ca594d7b79",
+          measurementId: "G-F3MXFYCB62"
         };
-      
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
+
+        firebase.initializeApp(config);
         const db = firebase.firestore();
-        // const analytics = getAnalytics(app);
       </script>
-     
     <script src="sandbox.js"></script>
+
 </body>
 </html>
